@@ -2,10 +2,10 @@ package com.nttd.ms.cuenta.bancaria.movimiento.reactivo.resource;
 
 import com.nttd.ms.cuenta.bancaria.movimiento.reactivo.entity.CBMovimiento;
 import com.nttd.ms.cuenta.bancaria.movimiento.reactivo.service.CBMovimientoService;
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-
 import java.util.List;
 
 @Path("/cuenta-bancaria-movimiento")
@@ -17,7 +17,7 @@ public class CBMovimientoResource {
     CBMovimientoService cbMovimientoService;
 
     @GET
-    public List<CBMovimiento> findByNumeroCuenta(@QueryParam("numeroCuenta") String numeroCuenta) {
+    public Uni<List<CBMovimiento>> findByNumeroCuenta(@QueryParam("numeroCuenta") String numeroCuenta) {
         return cbMovimientoService.findByNumeroCuenta(numeroCuenta);
     }
 }
